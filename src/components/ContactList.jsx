@@ -1,4 +1,5 @@
-import { useMemo } from "react"
+import { useMemo, useCallback } from "react"
+import ContactCard from "./ContactCard"
 
 function ContactList({ contacts, search }) {
   // const filtered = contacts.filter(c => c.name.toLowerCase().includes(search.toLowerCase())) //without memoization
@@ -8,12 +9,14 @@ function ContactList({ contacts, search }) {
     return contacts.filter(c => c.name.toLowerCase().includes(search.toLowerCase()))
   }, [contacts, search]) //with memmo
 
+  const handleSelect = useCallback((contact) => {
+    console.log(`Selected contact: ${contact.name}`)
+  }, [])
+
   return (
     <div>
       {filtered.map(contact => (
-        <div key={contact.id}>
-          <strong>{contact.name}</strong> - {contact.email}
-        </div>
+        <ContactCard key={contact.id} contact={contact} onSelect={handleSelect} />
       ))}
     </div>
   )
