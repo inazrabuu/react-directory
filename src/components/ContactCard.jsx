@@ -9,7 +9,7 @@ const ContactCard = React.memo(function ContactCard({ contact, onSelect }) {
       style={{ padding: '8px', borderBottom: '1px solid #eee', cursor: 'pointer' }}
     >
       <strong>{contact.name}</strong><br />
-      {contact.name}
+      {contact.email}
     </div>
   )
 })
